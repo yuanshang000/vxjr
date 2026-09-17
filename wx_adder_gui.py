@@ -411,23 +411,53 @@ class App(ctk.CTk):
 
             status = "unknown"
             errMsg = ""
-            try:
-                self.wx.AddNewFriend(
-                    keywords=phone,
-                    addmsg=params["addMsg"],
-                    remark=remark,
-                    tags=params["tags"],
-                )
+            sent = False
+            for attempt in range(1, 4):
+                if self.stopEvent.is_set():
+                    break
+                try:
+                    if attempt > 1:
+                        self.log(f"  第{attempt}次尝试...")
+                        time.sleep(2)
+                    self.wx.AddNewFriend(
+                        keywords=phone,
+                        addmsg=params["addMsg"],
+                        remark=remark,
+                        tags=params["tags"],
+                    )
+                    sent = True
+                    break
+                except Exception as e:
+                    errMsg = str(e)
+                    if attempt < 3:
+                        self.log(f"  尝试失败({attempt}/3)，重置窗口后重试: {errMsg}")
+                        try:
+                            self.wx.UiaAPI.SendKeys('{Esc}')
+                            time.sleep(0.5)
+                            self.wx.SwitchToChat()
+                            time.sleep(0.8)
+                            self.wx.SwitchToContact()
+                            time.sleep(0.8)
+                        except Exception:
+                            pass
+                    else:
+                        self.log(f"  [失败] {phone} | {remarkStr} | {errMsg}")
+
+            if sent:
                 status = "sent"
                 successCount += 1
                 with open(pf, "a", encoding="utf-8") as f:
                     f.write(phone + "\n")
                 self.log(f"  [成功] {phone} | {remarkStr} | 已发送添加请求")
-            except Exception as e:
+            else:
                 status = "fail"
-                errMsg = str(e)
                 failCount += 1
-                self.log(f"  [失败] {phone} | {remarkStr} | {errMsg}")
+
+            try:
+                self.wx.UiaAPI.SendKeys('{Esc}')
+                time.sleep(0.3)
+            except Exception:
+                pass
 
             results.append({"行号": rec["row"], "手机号": phone, "备注": remark or "", "状态": status, "错误": errMsg, "时间": time.strftime("%Y-%m-%d %H:%M:%S")})
             self.updateStats(total, i, successCount, failCount)
