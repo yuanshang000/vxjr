@@ -1,0 +1,40 @@
+{
+  "rootHash": "0b76003c32b21b410c38a617612ec3603eb02f1aae99dabf38746e99030234da",
+  "timestamp": 1789638757309,
+  "fileCount": 2,
+  "files": [
+    {
+      "path": "addWechatFriends.py",
+      "hash": "152bcf504cd81efaffef7e58463d0b30ffe92beef099767215245a14d92baa99",
+      "size": 7078,
+      "modified": 1789635011559.839
+    },
+    {
+      "path": "wx_adder_gui.py",
+      "hash": "e1ec6a0261d1ae834166dbd1c68961d4120326e5a81e11f7127c6ce7cf0d5e4b",
+      "size": 19629,
+      "modified": 1789636568766.4678
+    }
+  ],
+  "tree": {
+    "hash": "0b76003c32b21b410c38a617612ec3603eb02f1aae99dabf38746e99030234da",
+    "left": {
+      "hash": "152bcf504cd81efaffef7e58463d0b30ffe92beef099767215245a14d92baa99",
+      "file": {
+        "path": "addWechatFriends.py",
+        "hash": "152bcf504cd81efaffef7e58463d0b30ffe92beef099767215245a14d92baa99",
+        "size": 7078,
+        "modified": 1789635011559.839
+      }
+    },
+    "right": {
+      "hash": "e1ec6a0261d1ae834166dbd1c68961d4120326e5a81e11f7127c6ce7cf0d5e4b",
+      "file": {
+        "path": "wx_adder_gui.py",
+        "hash": "e1ec6a0261d1ae834166dbd1c68961d4120326e5a81e11f7127c6ce7cf0d5e4b",
+        "size": 19629,
+        "modified": 1789636568766.4678
+      }
+    }
+  }
+}
