@@ -39,7 +39,7 @@ def isValidPhone(val):
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("微信自动添加好友工具")
+        self.title("无垠之境-微信自动添加好友工具")
         self.geometry("960x680")
         self.minsize(900, 640)
 
@@ -83,7 +83,7 @@ class App(ctk.CTk):
         self._buildBottom(bottomFrame)
 
     def _buildTop(self, parent):
-        ctk.CTkLabel(parent, text="微信自动添加好友工具", font=ctk.CTkFont(size=22, weight="bold")).grid(row=0, column=0, columnspan=5, padx=16, pady=(12, 8), sticky="w")
+        ctk.CTkLabel(parent, text="无垠之境-微信自动添加好友工具", font=ctk.CTkFont(size=22, weight="bold")).grid(row=0, column=0, columnspan=5, padx=16, pady=(12, 8), sticky="w")
 
         ctk.CTkLabel(parent, text="Excel文件:").grid(row=1, column=0, padx=(16, 4), pady=4, sticky="w")
         self.fileEntry = ctk.CTkEntry(parent, state="readonly")
